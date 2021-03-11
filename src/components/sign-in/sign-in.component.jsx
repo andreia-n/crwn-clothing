@@ -6,32 +6,34 @@ import './sign-in.styles.scss';
 
 import {auth, signInWithGoogle} from '../../firebase/firebase.utils';
 class SignIn extends React.Component{
-    constructor(){
-        super();
+    constructor(props) {
+        super(props);
+    
         this.state = {
-            email:'',
-            password:''
+          email: '',
+          password: ''
         };
-
-
-    }
-
-    handleSubmit = async event => {
+      }
+    
+      handleSubmit = async event => {
         event.preventDefault();
-        const {email,password} = this.state;
-
-        try{
-                await auth.signInWithEmailAndPassword(email, password);
-                this.setState({email:'', password: ''})
-        }catch(error){
-                console.log(error);
+    
+        const { email, password } = this.state;
+    
+        try {
+          await auth.signInWithEmailAndPassword(email, password);
+          this.setState({ email: '', password: '' });
+        } catch (error) {
+          console.log(error);
         }
-        
- }
-handleChange = event =>{
-    const {value, name} = event.target;
-    this.setState({[name]: value})
-}
+      };
+    
+      handleChange = event => {
+        const { value, name } = event.target;
+    
+        this.setState({ [name]: value });
+      };
+    
 render(){
 
     return(
